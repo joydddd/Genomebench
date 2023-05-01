@@ -8,3 +8,4 @@ long-reads/basecalling/output
 *.out
 *.csv
 *.conf
+input-datasets
