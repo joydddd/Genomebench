@@ -34,8 +34,10 @@ INCLUDES+=	-I${VTUNE_HOME}/include
 LIBS+=-L${VTUNE_HOME}/lib64 -littnotify
 endif
 
+LDFLAGS+=-no-pie
+
 all: msa_spoa_omp.cpp
-	$(CXX) $(CXXFLAGS) msa_spoa_omp.cpp ${INCLUDES} ${LIBS} -o poa
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) msa_spoa_omp.cpp ${INCLUDES} ${LIBS} -o poa
 
 .PHONY: clean
 
