@@ -9,3 +9,7 @@ long-reads/basecalling/output
 *.csv
 *.conf
 input-datasets
+custom-*
+*.info.cfg
+*.info.status
+execute.sh
