@@ -1433,6 +1433,11 @@ void assembleReadsAndDetectVariants(int refStart, int refEnd, struct alignedRead
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifdef PIN_HOOK
+#include "pin_hook.h"
+#endif // PIN_HOOK
+
+
 int main(int argc,char** argv){
 #ifdef VTUNE_ANALYSIS
     __itt_pause();
@@ -1566,6 +1571,10 @@ int main(int argc,char** argv){
 #ifdef VTUNE_ANALYSIS
     __itt_resume();
 #endif
+
+#ifdef PIN_HOOK
+    pin_start();
+#endif  // PIN_HOOK
 #pragma omp parallel num_threads(numThreads)
 {
     int tid = omp_get_thread_num();
@@ -1582,6 +1591,10 @@ int main(int argc,char** argv){
             assembleReadsAndDetectVariants(refStart, refEnd, batches[i].windowStart, batches[i].windowEnd, batches[i].ref);
         }
 }
+
+#ifdef PIN_HOOK
+    pin_stop();
+#endif  // PIN_HOOK
 #ifdef VTUNE_ANALYSIS
     __itt_pause();
 #endif

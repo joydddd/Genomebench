@@ -1,3 +1,4 @@
+PIN_HOOK = 1
 #CXX = icpc
 CXX = g++
 
@@ -54,6 +55,9 @@ INCLUDES = -I../../tools/minimap2
 # Space-separated pkg-config libraries used by this project
 LIBS = -L../../tools/minimap2 -lminimap2 -ldl
 
+ifeq ($(PIN_HOOK),1)
+COMPILE_FLAGS += -DPIN_HOOK=1
+endif
 
 ifneq ($(VTUNE_HOME),)
 COMPILE_FLAGS += -DVTUNE_ANALYSIS=1
