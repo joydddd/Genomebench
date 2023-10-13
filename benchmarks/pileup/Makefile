@@ -1,9 +1,14 @@
+PIN_HOOK = 1
 CC     = gcc
 #CC		= icc
 #VTUNE_HOME= /opt/intel/vtune_profiler
 LIBS = -lz -lm -lbz2 -llzma -lpthread -lcurl -lcrypto -ldl
 CFLAGS   = -g -Wall -pthread -fstack-protector-strong -D_FORTIFY_SOURCE=2 -fPIC -std=c99 -O3 -fopenmp
 INC = -I../../tools/htslib
+
+ifeq ($(PIN_HOOK),1)
+CFLAGS += -DPIN_HOOK=1
+endif
 
 ifneq ($(VTUNE_HOME),)
 CFLAGS += -DVTUNE_ANALYSIS=1

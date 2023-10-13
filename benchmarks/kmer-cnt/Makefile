@@ -1,9 +1,14 @@
+PIN_HOOK = 1
 CXX     = g++
 #CXX		 = icpc
 #VTUNE_HOME= /opt/intel/vtune_profiler
 LIBS= -lz -lm -lbz2 -llzma -ldl -fopenmp
 CXXFLAGS   = -O3 -fopenmp
 INC = -Ilibcuckoo
+
+ifeq ($(PIN_HOOK),1)
+CXXFLAGS += -DPIN_HOOK=1
+endif
 
 ifneq ($(VTUNE_HOME),)
 CXXFLAGS+= -DVTUNE_ANALYSIS=1

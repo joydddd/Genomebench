@@ -26,6 +26,16 @@
     #include <ittnotify.h>
 #endif
 
+#ifdef PIN_HOOK
+__attribute__ ((noinline)) void pin_hook_init() {
+    fprintf(stderr, "PIN START\n");
+}
+__attribute__ ((noinline)) void pin_hook_fini() { 
+    fprintf(stderr, "PIN END\n"); 
+}
+
+#endif  // PIN_HOOK
+
 #define bam1_seq(b) ((b)->data + (b)->core.n_cigar*4 + (b)->core.l_qname)
 #define bam1_seqi(s, i) (bam_seqi((s), (i)))
 #define bam_nt16_rev_table seq_nt16_str
@@ -552,6 +562,9 @@ int main(int argc, char *argv[]) {
 #ifdef VTUNE_ANALYSIS
     __itt_resume();
 #endif
+#ifdef PIN_HOOK
+    pin_hook_init();
+#endif // PIN_HOOK
     // process batches in parallel
     #pragma omp parallel num_threads(numThreads)
     {
@@ -563,6 +576,9 @@ int main(int argc, char *argv[]) {
                                         weibull_summation, read_group);
             }
     }
+#ifdef PIN_HOOK
+    pin_hook_fini();
+#endif // PIN_HOOK
 #ifdef VTUNE_ANALYSIS
     __itt_pause();
 #endif

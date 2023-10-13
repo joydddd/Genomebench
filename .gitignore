@@ -30,3 +30,13 @@ bazel-testlogs
 *.o
 *~
 plink2_src.zip
+sim*
+*.gz
+*.as
+bsw
+dbg
+fmi
+kmer-cnt
+phmm
+pileup
+poa
