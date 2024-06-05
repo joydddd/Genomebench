@@ -207,7 +207,7 @@ inline size_t getCurrentRSS( )
 #endif
 }
 
-inline size_t  getFreeMemorySize()
+inline size_t getFreeMemorySize()
 {
 #if defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
 	char buffer[64];
