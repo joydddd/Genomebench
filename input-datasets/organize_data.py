@@ -10,13 +10,13 @@ count_total = 0
 length_total = 0
 
 
-f_sample = open("bsw/large/bandedSWA_SRR7733443_300k_input.txt","w+")
+f_sample = open("bsw/large/bandedSWA_SRR7733443_500k_input.txt","w+")
 
 
 #binning reads from input file
 with open(ip, 'r') as f:
     for line in f:
-        if (count_total > 3000000): break
+        if (count_total > 5000000): break
         header = line.strip()
         seq0 = next(f).strip()
         seq1 = next(f).strip()
