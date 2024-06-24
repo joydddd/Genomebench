@@ -9,7 +9,7 @@ CUDA_LIB=/usr/local/cuda
 
 .PHONY: clean
 	
-all: fmi bsw bsw-s dbg dbg-s chain pileup pileup-s kmer-cnt kmer-cnt-s
+all: fmi bsw bsw-s dbg dbg-s chain pileup pileup-s
 	# $(info Starting build..this may take a while..)
 	# phmm, poa are not used because of small memory footprint
 	# cd tools/GKL; ./gradlew test 
